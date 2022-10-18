@@ -7,9 +7,9 @@ import { TodoList } from "./TodoList";
 import { TodoItem } from "./TodoItem";
 
 const defaultTodos = [
-  { text: 'Cortar cebolla', completed: false },
-  { text: 'Cortar Lechuga', completed: true },
-  { text: 'Cortar Tomate', completed: false }
+  {  id: 1, text: 'Cortar cebolla', completed: false },
+  { id: 2, text: 'Cortar Lechuga', completed: true },
+  { id: 3, text: 'Cortar Tomate', completed: false }
 ];
 
 function App() {
@@ -29,6 +29,24 @@ function App() {
     });
   }
 
+  // completar todo
+  const completeTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos);
+
+  };
+
+  // eliminar todo
+  const deleteTodo = (id) => {
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+    const newTodos = [...todos];
+    // newTodos[todoIndex].completed = false;
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <React.Fragment>
       <TodoCounter 
@@ -44,9 +62,11 @@ function App() {
       <TodoList>
           { todoSearchValue.map(todo => (
               <TodoItem 
-              key={todo.text} 
+              key={todo.id} 
               texto={todo.text}
-              completed={todo.completed} />
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.id)}
+              onDelete={() => deleteTodo(todo.id)} />
           ))}
       </TodoList>
       <CreateTodoButton /> 
