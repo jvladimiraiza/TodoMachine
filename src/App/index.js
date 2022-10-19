@@ -1,14 +1,45 @@
 import React from "react";
 import { AppUi } from "./AppUi";
 
-const defaultTodos = [
-  {  id: 1, text: 'Cortar cebolla', completed: false },
-  { id: 2, text: 'Cortar Lechuga', completed: true },
-  { id: 3, text: 'Cortar Tomate', completed: false }
-];
+// const defaultTodos = [
+//   {  id: 1, text: 'Cortar cebolla', completed: false },
+//   { id: 2, text: 'Cortar Lechuga', completed: true },
+//   { id: 3, text: 'Cortar Tomate', completed: false }
+// ];
+  // const defaultTodos = [
+  //   {  id: 1, text: 'Cortar cebolla', completed: false },
+  //   { id: 2, text: 'Cortar Lechuga', completed: true },
+  //   { id: 3, text: 'Cortar Tomate', completed: false }
+  // ];
 
+  function useLocalStorage(itemName, initialValue) {
+    
+    const localStorageItem = localStorage.getItem(itemName);
+    let parsedItem;
+
+    if (!localStorageItem) {
+      localStorage.setItem(itemName, JSON.stringify(initialValue));
+      parsedItem = initialValue;
+    } else {
+      parsedItem = JSON.parse(localStorageItem);
+    }
+    const [item, setItem] = React.useState(parsedItem);
+    
+    const saveItem = (newItem) => {
+      const stringifItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName, stringifItem);
+      setItem(newItem);
+    };
+    return [
+      item, 
+      saveItem
+    ];
+  };
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+
+
   const [serarchValue, setSearchValue] = React.useState('');
   const completedTodos = todos.filter(todo => todo.completed === true).length;
   const totalTodos = todos.length;
@@ -29,8 +60,7 @@ function App() {
     const todoIndex = todos.findIndex(todo => todo.id === id);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
-
+    saveTodos(newTodos);
   };
 
   // eliminar todo
@@ -39,7 +69,7 @@ function App() {
     const newTodos = [...todos];
     // newTodos[todoIndex].completed = false;
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   return (
