@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+.divCenter {
+  position: relative;
+  left: 50%;
+  top: 225px;
+}
+
+.containerProgress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 40%;
+  margin: auto;
+  border: 3px solid #54E6E7;
+  background-color: #AAC6C6;
+  box-shadow: 0px 0px 15px #AAC6c6;
+  height: 25px;
+}
+.progess {
+  width: 0%;
+  background-color: #1A2929;
+  opacity: 0.8;
+  animation: progess 2s infinite alternate;
+  height: 25px;
+}
+@keyframes progess {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

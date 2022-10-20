@@ -15,6 +15,7 @@ function TodoProvider(props) {
         const [serarchValue, setSearchValue] = React.useState('');
         const completedTodos = todos.filter(todo => todo.completed === true).length;
         const totalTodos = todos.length;
+        const [openModal, setOpenModal] = React.useState(false);
         
         let todoSearchValue = [];
         if (!serarchValue.length >= 1) {
@@ -42,7 +43,21 @@ function TodoProvider(props) {
             newTodos.splice(todoIndex, 1);
             saveTodos(newTodos);
         };
-    
+        const addTodo = (text) => {
+            console.log("addtodo", text);
+            const newTodos = [...todos];
+            newTodos.push({
+                text: text,
+                id: todos.length + 1,
+                completed: false,
+            })
+            saveTodos(newTodos);
+        };
+
+        const onClickModal = () => {
+            // props.setOpenModal(true);
+            setOpenModal(prevState =>  !prevState);
+        };
     return (
         <TodoContext.Provider value={{ 
             loading,
@@ -54,6 +69,10 @@ function TodoProvider(props) {
             todoSearchValue,
             completeTodo,
             deleteTodo,
+            openModal,
+            setOpenModal,
+            addTodo,
+            onClickModal,
         }}>
             { props.children }
         </TodoContext.Provider>
