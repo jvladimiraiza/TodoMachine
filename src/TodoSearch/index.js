@@ -9,7 +9,7 @@ function TodoSearch() {
         setSearchValue(event.target.value);
     };
     return (
-            <input placeholder="Cebolla" 
+            <input placeholder="Buscar" 
             value={serarchValue}
             className="TodoSearch" onChange={onSearchValueSearch}/>
     );
