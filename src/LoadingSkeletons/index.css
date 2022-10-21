@@ -1,0 +1,21 @@
+.errorTask {
+    width: 70%;
+    /*parahaacerlotransparente*/
+    filter: hue-rotate(100deg) brightness(1.1);
+    mix-blend-mode: multiply;
+}
+
+.listaVaciaImg {
+    width: 70%;
+    /* para haacerlo transparente */
+    height: 150%;
+    filter: brightness(1.1); 
+    mix-blend-mode: multiply;
+    padding: 15px;
+    margin-left: 10px;
+}
+.parrafo {
+    color: white;
+    text-align: center;
+    padding-right: 2px;
+}

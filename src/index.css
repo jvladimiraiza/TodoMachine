@@ -5,8 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("../public/fondoReact.jpg");
-  background-repeat: no-repeat;
+  /* background-image: url("../public/fondoReact.jpg");
+  background-repeat: no-repeat; */
+  width: 98%;
+  background-image: linear-gradient(to right, #1F1C18, #8E0E00);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

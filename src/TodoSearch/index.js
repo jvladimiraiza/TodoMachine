@@ -9,9 +9,9 @@ function TodoSearch() {
         setSearchValue(event.target.value);
     };
     return (
-        <input placeholder="Cebolla" 
-        value={serarchValue}
-        className="TodoSearch" onChange={onSearchValueSearch}/>
+            <input placeholder="Cebolla" 
+            value={serarchValue}
+            className="TodoSearch" onChange={onSearchValueSearch}/>
     );
 }
 export {TodoSearch};
